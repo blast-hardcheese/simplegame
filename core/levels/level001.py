@@ -1,10 +1,10 @@
 from core.map import Map
-from core import types
+from core.types import Space, Wall, Start, End
 
 myMap = Map([
-    [types.Wall, types.Wall, types.Wall, types.Wall, types.Wall],
-    [types.Wall, types.Space, types.Space, types.Start, types.Wall],
-    [types.Wall, types.Space, types.Wall, types.Wall, types.Wall],
-    [types.Wall, types.Space, types.Space, types.End, types.Wall],
-    [types.Wall, types.Wall, types.Wall, types.Wall, types.Wall],
+    [Wall,  Wall,  Wall,  Wall,  Wall],
+    [Wall,  Space, Space, Start, Wall],
+    [Wall,  Space, Wall,  Wall,  Wall],
+    [Wall,  Space, Space, End,   Wall],
+    [Wall,  Wall,  Wall,  Wall,  Wall],
 ])
