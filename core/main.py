@@ -38,8 +38,10 @@ class Game(object):
     def xy(self):
         return (self.x, self.y)
 
-    def buildDirections(self):
-        x,y = self.xy()
+    def buildDirections(self, xy=None):
+        if xy is None:
+            xy = self.xy()
+        x,y = xy
 
         directions = {
             'L':(x-1, y),
