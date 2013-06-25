@@ -8,12 +8,21 @@ class Map(object):
         self.start = self.findStart()
         self.end = self.findEnd()
 
-    def iterateTiles(self, callback):
-        for y in range(self.cols):
-            for x in range(self.rows):
+    def iterateTiles(self, callback, accumulate=False):
+        r = None
+        grid = []
+        for y in range(self.rows):
+            row = []
+            grid.append(row)
+            for x in range(self.cols):
                 r = callback((x,y), self.gameboard[y][x])
-                if r is not None:
+                if accumulate:
+                    row.append(r)
+                elif r is not None:
                     return r
+        if accumulate:
+            r = grid
+        return r
 
     def findStart(self):
         return self.findType(Start)
@@ -37,12 +46,11 @@ class Map(object):
 
     def draw(self, playerpos=None):
         def callback(xy, char):
-            if xy[0] == 0 and xy[1] > 0:
-                print # Newline at the beginning of every row
             _char = Characters.get(char)
             if xy == playerpos:
                 _char = Characters.get(Player)
-            print _char,
-            if xy[0] == self.rows - 1 and xy[1] == self.cols - 1:
-                print # Final newline to clean things up
-        self.iterateTiles(callback)
+            return _char
+
+        grid = self.iterateTiles(callback, accumulate=True)
+        s = '\n'.join([''.join(row) for row in grid])
+        print s
