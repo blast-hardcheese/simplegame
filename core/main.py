@@ -72,12 +72,16 @@ class Game(object):
         return self.map.checkValue((x,y))
 
     def go(self, delay=0):
+        self.map.draw(self.xy())
+        time.sleep(delay)
+
         count = 0
         state = {}
         state['look'] = self.look
         while not self.checkWon() and count < 1000:
             state['x'] = self.x
             state['y'] = self.y
+            state['xy'] = self.x, self.y
             state['clock'] = count
             direction = self.move(state)
             validMoves = self.validMoves()
