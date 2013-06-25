@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from core.main import Game
 from core import types
 from core.map import Map
 
@@ -11,4 +12,10 @@ myMap = Map([
     [types.Wall, types.Wall, types.Wall, types.Wall, types.Wall],
 ])
 
-myMap.draw()
+def move(state):
+    return
+
+game = Game()
+game.setMap(myMap)
+game.setMoveMethod(move)
+game.go()
