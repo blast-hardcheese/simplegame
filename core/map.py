@@ -8,6 +8,19 @@ class Map(object):
         self.start = self.findStart()
         self.end = self.findEnd()
 
+    @classmethod
+    def fromAscii(cls, s):
+        lines = s.split('\n')
+        gameboard = []
+        for y in xrange(len(lines)):
+            row = []
+            gameboard.append(row)
+            for x in xrange(len(lines[y])):
+                char = lines[y][x]
+                val = Characters.get(char)
+                row.append(val)
+        return cls(gameboard)
+
     def iterateTiles(self, callback, accumulate=False):
         r = None
         grid = []

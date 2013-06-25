@@ -11,3 +11,7 @@ Characters = {
     End: "E",
     Player: "@",
 }
+
+for key in Characters.keys():
+    value = Characters[key]
+    Characters[value] = key
