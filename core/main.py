@@ -1,4 +1,26 @@
 import time
+import functools
+
+class reprwrapper(object):
+    def __init__(self, repr, func):
+        self._repr = repr
+        self._func = func
+        functools.update_wrapper(self, func)
+
+    def __call__(self, *args, **kw):
+        return self._func(*args, **kw)
+
+    def __repr__(self):
+        if callable(self._repr):
+            r = self._repr(self._func)
+        else:
+            r = self._repr
+        return r
+
+def withrepr(reprfun):
+    def _wrap(func):
+        return reprwrapper(reprfun, func)
+    return _wrap
 
 from core.types import Space,Wall,Start,End
 class Game(object):
@@ -45,9 +67,14 @@ class Game(object):
         if newXy:
             self.x,self.y = newXy
 
+    @withrepr("<Function: look(x, y)>")
+    def look(x, y):
+        return self.map.checkValue((x,y))
+
     def go(self, delay=0):
         count = 0
         state = {}
+        state['look'] = self.look
         while not self.checkWon() and count < 1000:
             state['x'] = self.x
             state['y'] = self.y
