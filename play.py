@@ -12,4 +12,4 @@ def level001(state):
 game = Game()
 game.setMap(myMap)
 game.setMoveMethod(level001)
-game.go()
+game.go(delay=2)

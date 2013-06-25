@@ -1,3 +1,5 @@
+import time
+
 from core.types import Space,Wall,Start,End
 class Game(object):
     x,y = 0,0
@@ -43,7 +45,7 @@ class Game(object):
         if newXy:
             self.x,self.y = newXy
 
-    def go(self):
+    def go(self, delay=0):
         count = 0
         state = {}
         while not self.checkWon() and count < 1000:
@@ -56,3 +58,4 @@ class Game(object):
                 self.applyMovement(direction)
             self.map.draw(self.xy())
             count += 1
+            time.sleep(delay)
