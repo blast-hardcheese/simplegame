@@ -1,21 +1,13 @@
 #!/usr/bin/env python
 
 from core.main import Game
-from core import types
-from core.map import Map
+from core.levels.level001 import myMap
 
-myMap = Map([
-    [types.Wall, types.Wall, types.Wall, types.Wall, types.Wall],
-    [types.Wall, types.Space, types.Space, types.Start, types.Wall],
-    [types.Wall, types.Space, types.Wall, types.Wall, types.Wall],
-    [types.Wall, types.Space, types.Space, types.End, types.Wall],
-    [types.Wall, types.Wall, types.Wall, types.Wall, types.Wall],
-])
-
-def move(state):
-    return
+def level001(state):
+    print state
+    return ''
 
 game = Game()
 game.setMap(myMap)
-game.setMoveMethod(move)
+game.setMoveMethod(level001)
 game.go()
