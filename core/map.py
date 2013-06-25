@@ -1,4 +1,4 @@
-from core.Types import Characters
+from core.types import Characters
 class Map(object):
     def __init__(self, gameboard):
         self.gameboard = gameboard

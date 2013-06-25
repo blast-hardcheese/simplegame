@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 
-from core import Types
-from core import Map
+from core import types
+from core.map import Map
 
 myMap = Map([
-    [Types.Wall, Types.Wall, Types.Wall, Types.Wall, Types.Wall],
-    [Types.Wall, Types.Space, Types.Space, Types.Start, Types.Wall],
-    [Types.Wall, Types.Space, Types.Wall, Types.Wall, Types.Wall],
-    [Types.Wall, Types.Space, Types.Space, Types.End, Types.Wall],
-    [Types.Wall, Types.Wall, Types.Wall, Types.Wall, Types.Wall],
+    [types.Wall, types.Wall, types.Wall, types.Wall, types.Wall],
+    [types.Wall, types.Space, types.Space, types.Start, types.Wall],
+    [types.Wall, types.Space, types.Wall, types.Wall, types.Wall],
+    [types.Wall, types.Space, types.Space, types.End, types.Wall],
+    [types.Wall, types.Wall, types.Wall, types.Wall, types.Wall],
 ])
 
 myMap.draw()
