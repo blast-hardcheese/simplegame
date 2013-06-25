@@ -84,6 +84,8 @@ class Game(object):
         def _look(dir):
             return self.look(dir)
 
+        builtin_state = ['look', 'x', 'y', 'xy', 'clock']
+
         count = 0
         state = {}
         state['look'] = _look
@@ -100,3 +102,15 @@ class Game(object):
             self.map.draw(self.xy())
             count += 1
             time.sleep(delay)
+
+        if self.checkWon():
+            print "You won!"
+        elif clock == 1000:
+            print "You ran out of time, try again!"
+        else:
+            print "Try again!"
+
+        statevars = [key for key in state if not key in builtin_state]
+        print "  Clock:", count, 'out of', 1000
+        print "  Used", len(statevars), "state variables!"
+        print "  State Variables:", statevars
