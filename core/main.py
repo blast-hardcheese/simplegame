@@ -69,17 +69,25 @@ class Game(object):
         if newXy:
             self.x,self.y = newXy
 
-    @withrepr("<Function: look(x, y)>")
-    def look(x, y):
-        return self.map.checkValue((x,y))
+    def look(self, directionList):
+        r = None
+        xy = self.xy()
+        for d in directionList:
+            xy = self.buildDirections(xy)[d]
+        return self.map.checkValue(xy)
 
     def go(self, delay=0):
         self.map.draw(self.xy())
         time.sleep(delay)
 
+        @withrepr("<Function: look(Direction or DirectionList)>")
+        def _look(dir):
+            return self.look(dir)
+
         count = 0
         state = {}
-        state['look'] = self.look
+        state['look'] = _look
+
         while not self.checkWon() and count < 1000:
             state['x'] = self.x
             state['y'] = self.y
